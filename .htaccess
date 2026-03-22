@@ -1,0 +1,45 @@
+Options -Indexes
+
+# Konfiguracja routingu dla aplikacji
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Ustaw bazową ścieżkę dla aplikacji
+    RewriteBase /myleafdemo/
+    
+    # PIERWSZEŃSTWO: Ukryj wrażliwe katalogi - przekieruj do routera (zamiast 403)
+    RewriteRule ^(config|myleaf|routes|helpers|uploads)(/.*)?$ index.php [QSA,L]
+    
+    # Sprawdź czy plik istnieje w frontOutput/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{DOCUMENT_ROOT}/myleafdemo/frontOutput/$1 -f
+    RewriteRule ^(.*)$ frontOutput/$1 [L]
+    
+    # Sprawdź czy plik istnieje w public/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{DOCUMENT_ROOT}/myleafdemo/public/$1 -f
+    RewriteRule ^(.*)$ public/$1 [L]
+
+    # # Redirect / to /frontOutput/index.html
+    # RewriteCond %{REQUEST_URI} ^/$
+    # RewriteRule ^$ frontOutput/index.html [L]
+    # # RewriteRule ^$ frontOutput/index.html [QSA,L]
+    
+    # Wszystkie pozostałe żądania przekieruj do routera
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# === ZABEZPIECZENIA ===
+
+# Blokuj całkowity dostęp do wrażliwych katalogów (wszystkie pliki i podkatalogi)
+RewriteRule ^(config|myleaf|routes|helpers|uploads|frontVue)(/.*)?$ - [F,L]
+
+# Blokuj dostęp do wrażliwych typów plików w całej aplikacji
+<FilesMatch "\.(ini|log|conf|env|htaccess|md)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
