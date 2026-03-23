@@ -20,7 +20,6 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: DEV_PROXY_URL,
-        ws: true,
         secure: false,
       },
     }

@@ -239,9 +239,9 @@ class SimpleRouter
 
         // 404 Not Found - jeśli dotarliśmy tutaj, znaczy że ani trasa ani plik statyczny nie istnieje
         if ($this->notFoundRoute) {
-            return call_user_func($this->notFoundRoute);
+            return call_user_func($this->notFoundRoute, $uri, $method);
         } else {
-            response()->json(['error' => 'Endpoint not found', 'path' => $uri], 404);
+            response()->json(['error' => 'Endpoint not found', 'path' => $uri, 'method' => $method], 404);
         }
     }
 }

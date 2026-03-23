@@ -1,14 +1,14 @@
 {
-  "name": "php-backend-vue3-frontend-repo",
+  "name": "php-backend-vue3-frontend-one-repo",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/PiotrekkG/php-backend-vue3-frontend-repo#readme",
+  "homepage": "https://github.com/PiotrekkG/php-backend-vue3-frontend-one-repo#readme",
   "bugs": {
-    "url": "https://github.com/PiotrekkG/php-backend-vue3-frontend-repo/issues"
+    "url": "https://github.com/PiotrekkG/php-backend-vue3-frontend-one-repo/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PiotrekkG/php-backend-vue3-frontend-repo.git"
+    "url": "git+https://github.com/PiotrekkG/php-backend-vue3-frontend-one-repo.git"
   },
   "license": "SEE LICENSE IN LICENSE",
   "author": "GitHub@PiotrekkG",
@@ -16,7 +16,7 @@
   "type": "module",
   "scripts": {
     "frontDev": "vite serve ./frontVue --config ./frontVue/vite.config.js --port 5173",
-    "frontBuildOutput": "vite build ./frontVue --config ./frontVue/vite.config.js --outDir ../frontOutput --base /myleafdemo/"
+    "frontBuildOutput": "vite build ./frontVue --config ./frontVue/vite.config.js --outDir ../frontOutput --base /php-backend-vue3-frontend-one-repo/"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",

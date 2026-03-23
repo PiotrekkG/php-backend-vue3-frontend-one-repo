@@ -2,13 +2,13 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 
 import authRoutes from '@/routes/auth/routes';
-import chatRoutes from '@/routes/chat/routes';
+import loggedRoutes from '@/routes/logged/routes';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     ...authRoutes,
-    ...chatRoutes,
+    ...loggedRoutes,
     {
       path: '/:catchAll(.*)',
       name: 'NotFound',
@@ -23,6 +23,7 @@ router.beforeEach(async (to, from) => {
 
   const authStore = useAuthStore();
   const isAuthenticated = await authStore.isAuthenticated();
+  console.log(`Navigating to ${to.name}, requiresAuth: ${to.meta.requiresAuth}, isAuthenticated: ${isAuthenticated}`);
 
   if (to.meta.requiresAuth && !isAuthenticated) {
     return ({ name: 'UnloggedView' });

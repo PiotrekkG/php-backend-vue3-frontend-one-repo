@@ -1,8 +1,7 @@
 <template>
   <div class="text-center">
-    <h2 class="mt-5 mb-3">Zagraj jako gość</h2>
-    <p class="mb-0">Dołącz do gry bez rejestracji i rywalizuj z innymi graczami online!</p>
-    <p class="fst-italic">Logując się jako gość możesz grać anonimowo - jednak nie zostaną zapisane Twoje wyniki ani postępy.</p>
+    <h2 class="mt-5 mb-3">Dołącz jako gość</h2>
+    <p class="mb-0">Dołącz bez rejestracji!</p>
 
     <form class="w-50 mx-auto" @submit="submitGuestLogin">
       Wprowadź swój pseudonim:
@@ -11,7 +10,7 @@
         <input type="text" class="form-control" placeholder="Twój pseudonim" v-model="username" />
         <span class="input-group-text">@random</span>
       </div>
-      <button class="btn btn-success w-100">Dołącz do gry</button>
+      <button class="btn btn-success w-100">Dołącz</button>
     </form>
     <p class="mt-3">Chcesz mieć możliwość zapisywania wyników i postępów? <a href="#" @click="$router.push({ name: 'Register' })">Zarejestruj się</a></p>
     <p class="mt-1">Już posiadasz konto? <a href="#" @click="$router.push({ name: 'Login' })">Zaloguj się</a></p>
@@ -28,7 +27,7 @@ export default {
     return {
       authStore: useAuthStore(),
 
-      username: 'Gracz',
+      username: 'User',
     };
   },
   computed: {},
@@ -39,10 +38,10 @@ export default {
       const response = await this.authStore.loginAsGuest(this.username);
       
       handleRequestResponse(response, () => {
-        console.log(`Dołączasz do gry jako: ${this.username}`);
-        this.$router.push({ name: 'Chat'});
+        console.log(`Dołączasz jako: ${this.username}`);
+        this.$router.push({ name: 'Logged'});
       }, () => {
-        alert('Nie udało się dołączyć do gry jako gość. Spróbuj ponownie.');
+        alert('Nie udało się dołączyć jako gość. Spróbuj ponownie.');
       });
 
     }

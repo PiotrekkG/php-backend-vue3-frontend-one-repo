@@ -352,4 +352,29 @@ app()->group('/auth', function () {
             response()->json(['info' => 'INVALID_TOKEN'], 400);
         }
     });
+
+    app()->post('/loginAsGuest', function () {
+        if (Auth::check()) {
+            response()->json(['info' => 'ALREADY_LOGGED_IN'], 400);
+            return;
+        }
+
+        $data = request()->validate([
+            'name' => 'any',
+        ]);
+
+        if (!$data['name']) {
+            response()->json(['info' => 'USERNAME_REQUIRED'], 400);
+            return;
+        }
+
+        $guestUsername = 'Guest_' . bin2hex(random_bytes(4)) . '_' . $data['name'];
+        $sess = [
+            'id' => null,
+            'username' => $guestUsername,
+            'email' => null,
+        ];
+        $_SESSION['user'] = $sess;
+        response()->json(['info' => 'GUEST_LOGIN_SUCCESSFUL', 'user' => Auth::user()]);
+    });
 });

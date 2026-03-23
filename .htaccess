@@ -5,7 +5,7 @@ Options -Indexes
     RewriteEngine On
     
     # Ustaw bazową ścieżkę dla aplikacji
-    RewriteBase /myleafdemo/
+    RewriteBase /php-backend-vue3-frontend-one-repo/
     
     # PIERWSZEŃSTWO: Ukryj wrażliwe katalogi - przekieruj do routera (zamiast 403)
     RewriteRule ^(config|myleaf|routes|helpers|uploads)(/.*)?$ index.php [QSA,L]
@@ -13,13 +13,13 @@ Options -Indexes
     # Sprawdź czy plik istnieje w frontOutput/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{DOCUMENT_ROOT}/myleafdemo/frontOutput/$1 -f
+    RewriteCond %{DOCUMENT_ROOT}/php-backend-vue3-frontend-one-repo/frontOutput/$1 -f
     RewriteRule ^(.*)$ frontOutput/$1 [L]
     
     # Sprawdź czy plik istnieje w public/
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{DOCUMENT_ROOT}/myleafdemo/public/$1 -f
+    RewriteCond %{DOCUMENT_ROOT}/php-backend-vue3-frontend-one-repo/public/$1 -f
     RewriteRule ^(.*)$ public/$1 [L]
 
     # # Redirect / to /frontOutput/index.html

@@ -42,7 +42,7 @@ export const useAuthStore = defineStore('auth', {
     async loginAsGuest(userName) {
       // this.user = userName;
 
-      const response = await fetchData('/auth/joinAsGuest', { name: userName }, 'POST');
+      const response = await fetchData('/auth/loginAsGuest', { name: userName }, 'POST');
 
       // this.user = response.data?.user ?? null;
       // if(this.user) {

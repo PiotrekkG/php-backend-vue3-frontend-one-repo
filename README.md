@@ -27,14 +27,14 @@ Aplikacja została skonfigurowana tak, aby wszystkie żądania przechodziły prz
 ## 🚀 Dostęp do API
 
 ### ✅ Prawidłowe URL-e:
-- `http://localhost/myleafdemo/api/public/`
-- `http://localhost/myleafdemo/api/public/api/users`
-- `http://localhost/myleafdemo/api/public/api/user/123`
+- `http://localhost/php-backend-vue3-frontend-one-repo/api/public/`
+- `http://localhost/php-backend-vue3-frontend-one-repo/api/public/api/users`
+- `http://localhost/php-backend-vue3-frontend-one-repo/api/public/api/user/123`
 
 ### ❌ Zablokowane URL-e:
-- `http://localhost/myleafdemo/api/config.php` (403 Forbidden)
-- `http://localhost/myleafdemo/api/myleaf/functions.php` (403 Forbidden)
-- `http://localhost/myleafdemo/api/routes/api.php` (403 Forbidden)
+- `http://localhost/php-backend-vue3-frontend-one-repo/api/config.php` (403 Forbidden)
+- `http://localhost/php-backend-vue3-frontend-one-repo/api/myleaf/functions.php` (403 Forbidden)
+- `http://localhost/php-backend-vue3-frontend-one-repo/api/routes/api.php` (403 Forbidden)
 
 ## 🛡️ Zabezpieczenia
 
@@ -61,6 +61,6 @@ app()->post('/api/user/{id}', function($id) {
 
 Sprawdź czy zabezpieczenia działają:
 
-1. Otwórz: `http://localhost/myleafdemo/api/public/` ✅
-2. Spróbuj: `http://localhost/myleafdemo/api/config.php` ❌ (powinno być 403)
-3. Spróbuj: `http://localhost/myleafdemo/api/myleaf/functions.php` ❌ (powinno być 403)
+1. Otwórz: `http://localhost/php-backend-vue3-frontend-one-repo/api/public/` ✅
+2. Spróbuj: `http://localhost/php-backend-vue3-frontend-one-repo/api/config.php` ❌ (powinno być 403)
+3. Spróbuj: `http://localhost/php-backend-vue3-frontend-one-repo/api/myleaf/functions.php` ❌ (powinno być 403)

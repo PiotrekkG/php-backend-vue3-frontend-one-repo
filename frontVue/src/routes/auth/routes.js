@@ -14,13 +14,13 @@ const routes = [
         path: '/',
         name: 'UnloggedView',
         component: UnloggedView,
-        meta: { authRedirectTo: 'Game' }
+        meta: { authRedirectTo: 'Logged' }
       },
       {
         path: 'guest',
         name: 'Guest',
         component: GuestLoginView,
-        meta: { authRedirectTo: 'Game' }
+        meta: { authRedirectTo: 'Logged' }
       },
       {
         path: 'register',
@@ -28,7 +28,7 @@ const routes = [
         component: VAuth,
         // component: () => import('./VAuth.vue'),
         props: { formType: 'register' },
-        meta: { authRedirectTo: 'Game' }
+        meta: { authRedirectTo: 'Logged' }
       },
       {
         path: 'change-password',
@@ -36,7 +36,7 @@ const routes = [
         component: VAuth,
         // component: () => import('./VAuth.vue'),
         props: { formType: 'change-password' },
-        meta: { authRedirectTo: 'Game' }
+        meta: { authRedirectTo: 'Logged' }
       },
       {
         path: 'login',
@@ -44,7 +44,7 @@ const routes = [
         component: VAuth,
         // component: () => import('./VAuth.vue'),
         props: { formType: 'login' },
-        meta: { authRedirectTo: 'Game' }
+        meta: { authRedirectTo: 'Logged' }
       },
     ]
   }

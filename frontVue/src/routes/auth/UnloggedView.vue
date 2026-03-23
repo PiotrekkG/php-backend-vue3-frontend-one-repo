@@ -1,12 +1,10 @@
 <template>
   <div class="text-center">
-    <!-- <h2>Witaj w grze Czołgi multiplayer - Online Tank Shooter!</h2>
-    <p>Dołącz do emocjonujących bitew czołgów online i rywalizuj z graczami z całego świata!</p> -->
-    <router-link to="/guest" class="btn btn-info">Graj jako gość (bez rejestracji)</router-link>
+    <router-link to="/guest" class="btn btn-info">Dołącz jako gość (bez rejestracji)</router-link>
     lub
     <div class="btn-group">
-      <router-link to="/guest" class="btn btn-primary">Zaloguj się</router-link>
-      <router-link to="/guest" class="btn btn-secondary">Zarejestruj się</router-link>
+      <router-link to="/login" class="btn btn-primary">Zaloguj się</router-link>
+      <router-link to="/register" class="btn btn-secondary">Zarejestruj się</router-link>
     </div>
   </div>
 </template>

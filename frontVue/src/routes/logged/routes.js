@@ -1,4 +1,4 @@
-import ChatView from './ChatView.vue';
+import LoggedView from './LoggedView.vue';
 
 /**
  * Thread-related routes
@@ -6,9 +6,9 @@ import ChatView from './ChatView.vue';
  */
 const routes = [
     {
-        path: '/chat',
-        name: 'Chat',
-        component: ChatView,
+        path: '/logged',
+        name: 'Logged',
+        component: LoggedView,
         meta: { requiresAuth: true }
     },
 ];
