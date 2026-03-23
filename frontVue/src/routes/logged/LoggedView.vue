@@ -1,5 +1,11 @@
 <template>
   <div class="container">
+    <div v-if="output !== null">
+      {{ output }}
+    </div>
+    <div v-else>
+      Ładowanie...
+    </div>
     <div v-if="dbinfo !== null">
       {{ dbinfo }}
     </div>
@@ -19,6 +25,7 @@ export default {
     return {
       authStore: useAuthStore(),
 
+      output: null,
       dbinfo: null,
     };
   },
@@ -29,12 +36,12 @@ export default {
 
     async fetchData() {
       let response;
-      // response = await fetchData('/info');
-      // handleRequestResponse(response, () => {
-      //   this.output = `Aktualny czas ${dateString(response.data.time * 1000)} ${timeString(response.data.time * 1000, true)}.`;
-      // }, () => {
-      //   alert('Błąd przy pobieraniu info');
-      // });
+      response = await fetchData('/info');
+      handleRequestResponse(response, () => {
+        this.output = `Aktualny czas ${dateString(response.data.time * 1000)} ${timeString(response.data.time * 1000, true)}.`;
+      }, () => {
+        alert('Błąd przy pobieraniu info');
+      });
 
       response = await fetchData('/db');
       handleRequestResponse(response, () => {
