@@ -71,7 +71,7 @@ export default {
   data() {
     return {
       modal: null,
-      id: 'id-' + Math.random().toString(36).substr(2, 9),
+      id: 'id_' + Math.random().toString(36).substr(2, 9),
     }
   },
   emits: ['show', 'shown', 'hide', 'closed'],

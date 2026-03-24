@@ -36,10 +36,13 @@
     <router-view />
 
     <hr class="mt-4" /> Logged user info: {{ authStore.user ?? 'null' }}
+
+    <InfoViewer />
   </div>
 </template>
 
 <script>
+import InfoViewer from './Components/InfoViewer.vue';
 import { useAuthStore } from './stores/auth';
 
 export default {
@@ -48,6 +51,9 @@ export default {
     return {
       authStore: useAuthStore(),
     };
+  },
+  components: {
+    InfoViewer,
   },
   computed: {},
   methods: {},
