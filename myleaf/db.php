@@ -12,6 +12,11 @@ class SimpleQuery
     private $paramsValues = [];
     // private $paramsNamed = [];
 
+    /**
+     * Constructor for SimpleQuery
+     * @param PDO $connection The PDO connection instance
+     * @param string $sql The SQL query to prepare
+     */
     public function __construct($connection, $sql)
     {
         $this->connection = $connection;
@@ -35,12 +40,13 @@ class SimpleQuery
         if ($params === null) {
             $params = [];
         }
-        $this->stmt->execute($params);
-        $error = $this->stmt->errorInfo();
-        if (count($error) > 0 && $error[0] !== '00000') {
-            $this->error = $error;
-        } else {
-            $this->error = null;
+        if(!$this->stmt->execute($params)) {
+            $error = $this->stmt->errorInfo();
+            if (count($error) > 0 && $error[0] !== '00000') {
+                $this->error = $error;
+            } else {
+                $this->error = null;
+            }
         }
         $this->executed = true;
         return $this;
@@ -67,12 +73,15 @@ class SimpleQuery
 
     /**
      * Fetch all results as an associative array
-     * @return array The fetched results
+     * @return array|null The fetched results or null if an error occurred
      */
     public function fetchAll()
     {
         if (!$this->executed) {
             $this->execute();
+        }
+        if ($this->error) {
+            return null;
         }
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
@@ -86,17 +95,23 @@ class SimpleQuery
         if (!$this->executed) {
             $this->execute();
         }
+        if ($this->error) {
+            return null;
+        }
         return $this->stmt->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
      * Get the number of affected rows by the last executed statement
-     * @return int The number of affected rows
+     * @return int|null The number of affected rows or null if an error occurred
      */
     public function rowCount()
     {
         if (!$this->executed) {
             $this->execute();
+        }
+        if ($this->error) {
+            return null;
         }
         return $this->stmt->rowCount();
     }
@@ -223,7 +238,7 @@ class SimpleDb
      * @param string|null $where (warunek WHERE, np. "id = 1" lub "id = ?")
      * @param array|mixed $whereParams (jeśli w where są ?, to podaj wartości w tablicy lub pojedynczą wartość)
      * @param array|null $allowParamsKeys (jeśli podane, to tylko te klucze z $params będą użyte w zapytaniu)
-     * @return int|false liczba zmienionych rekordów lub false
+     * @return int|false|null liczba zmienionych rekordów lub false or null if an error occurred
      */
     public function update($table, $params = [], $where = null, $whereParams = [], $allowParamsKeys = null)
     {
@@ -258,7 +273,7 @@ class SimpleDb
      * @param string $table
      * @param string|null $where (warunek WHERE, np. "id = 1" lub "id = ?")
      * @param array|mixed $whereParams (jeśli w where są ?, to podaj wartości w tablicy lub pojedynczą wartość)
-     * @return int|false liczba usuniętych rekordów lub false
+     * @return int|false|null liczba usuniętych rekordów lub false or null if an error occurred
      */
     public function delete($table, $where = null, $whereParams = [])
     {
