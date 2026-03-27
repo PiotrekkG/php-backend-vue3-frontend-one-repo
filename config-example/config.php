@@ -4,7 +4,7 @@
 
 // Ustawienia podstawowe
 define('BASE_URL', 'http://localhost/php-backend-vue3-frontend-one-repo/');
-define('BASE_PATH', '/php-backend-vue3-frontend-one-repo'); // remove this path from path used in app, remember to update .htaccess accordingly
+define('BASE_PATH', '/php-backend-vue3-frontend-one-repo/api'); // remove this path from path used in app, remember to update .htaccess accordingly
 
 // Ustawienia email
 define('CONFIRM_EMAIL_URL', 'http://localhost/php-backend-vue3-frontend-one-repo/email/confirm/');
