@@ -16,7 +16,7 @@
   "type": "module",
   "scripts": {
     "frontDev": "vite serve ./frontVue --config ./frontVue/vite.config.js --port 5173",
-    "frontBuildOutput": "vite build ./frontVue --config ./frontVue/vite.config.js --outDir ../frontOutput --base /php-backend-vue3-frontend-one-repo/"
+    "frontBuildOutput": "vite build ./frontVue --config ./frontVue/vite.config.js --outDir ../frontOutput --emptyOutDir --base /php-backend-vue3-frontend-one-repo/"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
