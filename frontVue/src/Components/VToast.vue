@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { formatDate } from '@/functions/functions';
+import { formatDate } from '@/functions/Utils';
 import { Toast } from 'bootstrap';
 
 

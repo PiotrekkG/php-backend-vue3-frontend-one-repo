@@ -119,6 +119,29 @@ export function timeString(date, withSeconds = true) {
   return `${padZero(date.getHours())}:${padZero(date.getMinutes())}${withSeconds ? `:${padZero(date.getSeconds())}` : ''}`
 }
 
+/**
+ *
+ * @param {Date|String} date
+ * @param {Boolean} showTime
+ * @param {Boolean} showDate
+ * @param {Boolean} showMillis
+ */
+export function formatDate(date, showTime = false, showDate = true, showMillis = false) {
+  if (!(date instanceof Date)) {
+    date = new Date(!isNaN(date) ? parseInt(date) : date);
+  }
+  if (isNaN(date))
+    return '';
+  var [datePart, timePart] = date.toISOString().split("T");
+  if (showTime) {
+    if (showMillis)
+      timePart = timePart.replace("Z", "");
+    else
+      timePart = timePart.split(".")[0];
+  }
+  return (showDate ? datePart : '') + (showDate && showTime ? ' ' : '') + (showTime ? timePart : '');
+}
+
 export function padZero(num) {
   return num.toString().padStart(2, '0');
 }
